@@ -1,18 +1,12 @@
 from bson import ObjectId
 
-
-class OrderRepos:
+from src.models.interfaces.orders_repos import OrderReposInterface
+class OrderRepos(OrderReposInterface):
     def __init__(self, db_connection) -> None:
       self.__collection_name = "orders"
       self.__db_connection = db_connection
 
-    def get_orders(self):
-      pass
-
-    def get_order(self):
-      pass
-
-    def create_order(self, document: dict)-> None:
+    def insert_order(self, document: dict)-> None:
       collection = self.__db_connection.get_connection()[self.__collection_name]
       collection.insert_one(document)
 

@@ -14,12 +14,6 @@ class OrderReposInterface(ABC):
     def select_one(self, filter: dict) -> dict:pass
 
     @abstractmethod
-    def select_many_with_props(self, filter: dict) -> list:pass
-
-    @abstractmethod
-    def select_if_props_exits(self) -> dict:pass
-
-    @abstractmethod
     def select_by_object_id(self,object_id:str)->dict:pass
 
     @abstractmethod

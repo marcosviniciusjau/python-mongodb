@@ -34,11 +34,11 @@ class OrderRepos(OrderReposInterface):
         response = collection.find_one({"_id": ObjectId(object_id)})
         return response
 
-    def edit_registry(self) -> None:
+    def edit_registry(self, order_id:str, update_fields: dict) -> None:
         collection = self.__db_connection.get_collection(self.__collection_name)
         collection.update_one(
-            {"_id": ObjectId("66d9c123a0015322e677517c")},
-            {"$set": {"cupom": True}}
+            {"_id": ObjectId(order_id)},
+            {"$set": update_fields}
         )
 
     def edit_many_registries(self) -> None:
@@ -47,7 +47,6 @@ class OrderRepos(OrderReposInterface):
             {"items.refrigerante": {"$exists": True}},
             {"$set": {"items.refrigerante.quantidade": 30}}
         )
-
     def edit_many_registry_with_increment(self) -> None:
         collection = self.__db_connection.get_collection(self.__collection_name)
         collection.update_one(
